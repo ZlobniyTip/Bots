@@ -1,7 +1,6 @@
-using System.Collections;
 using UnityEngine;
 
-public class Bot : MonoBehaviour
+public class BotCollector : MonoBehaviour
 {
     [SerializeField] private Stock _stock;
     [SerializeField] private float _speed;
@@ -58,13 +57,6 @@ public class Bot : MonoBehaviour
     {
         TargetResource.transform.parent = null;
         Expect();
-        GetInLine();
-    }
-
-    private void GetInLine()
-    {
-        _stock.PutInQueue(this);
-        _stock.AddResource();
     }
 
     public void GetInstructions(Resource resource)

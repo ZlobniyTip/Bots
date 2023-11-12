@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class Stock : MonoBehaviour
 {
-    [SerializeField] Bot[] _initialBots;
+    [SerializeField] BotCollector[] _initialBots;
 
-    private Queue<Bot> _bots;
+    private Queue<BotCollector> _bots;
     private Queue<Resource> _resources;
     private Resource _resource;
     private int _resourceCount;
 
     private void Start()
     {
-        _bots = new Queue<Bot>();
+        _bots = new Queue<BotCollector>();
         _resources = new Queue<Resource>();
 
         for (int i = 0; i < _initialBots.Length; i++)
         {
             _bots.Enqueue(_initialBots[i]);
         }
+
+        StartCoroutine(FindFreeBots());
     }
 
     private void Update()
@@ -38,11 +40,28 @@ public class Stock : MonoBehaviour
         }
     }
 
+    private IEnumerator FindFreeBots()
+    {
+        while (true)
+        {
+
+            for (int i = 0; i < _initialBots.Length; i++)
+            {
+                if (_initialBots[i].CarriesResource == false)
+                {
+                    PutInQueue(_initialBots[i]);
+                }
+            }
+
+            yield return null;
+        }
+    }
+
     private void SendCollect()
     {
         if (_bots.Count > 0)
         {
-            Bot currentBot = _bots.Dequeue();
+            BotCollector currentBot = _bots.Dequeue();
 
             if (currentBot.TargetResource == null)
             {
@@ -55,13 +74,9 @@ public class Stock : MonoBehaviour
         }
     }
 
-    public void AddResource()
+    private void PutInQueue(BotCollector bot)
     {
         _resourceCount++;
-    }
-
-    public void PutInQueue(Bot bot)
-    {
         _bots.Enqueue(bot);
     }
 }
