@@ -44,7 +44,6 @@ public class Stock : MonoBehaviour
     {
         while (true)
         {
-
             for (int i = 0; i < _initialBots.Length; i++)
             {
                 if (_initialBots[i].CarriesResource == false)
@@ -76,7 +75,11 @@ public class Stock : MonoBehaviour
 
     private void PutInQueue(BotCollector bot)
     {
-        _resourceCount++;
         _bots.Enqueue(bot);
+    }
+
+    public void GetResource()
+    {
+        _resourceCount++;
     }
 }
