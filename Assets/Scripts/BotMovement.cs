@@ -32,4 +32,9 @@ public class BotMovement : MonoBehaviour
             }
         }
     }
+
+    public void GetLink(Stock stock)
+    {
+        _stock = stock;
+    }
 }

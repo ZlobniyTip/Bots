@@ -20,4 +20,8 @@ public class Collection : MonoBehaviour
         _botCollector.Expect();
         _stock.GetResource();
     }
+    public void GetLink(Stock stock)
+    {
+        _stock = stock;
+    }
 }
