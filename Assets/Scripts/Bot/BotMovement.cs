@@ -16,7 +16,7 @@ public class BotMovement : MonoBehaviour
 
             if (transform.position == _buildNewWarehouse.ConstructionSite)
             {
-                _buildNewWarehouse.BuildWarehouse();
+                _buildNewWarehouse.BuildWarehouse(_stock);
 
                 _botCollector.BecomeCollector();
             }

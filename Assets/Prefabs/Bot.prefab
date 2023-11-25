@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4059513196657245279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.873928, y: 0.5, z: 37.19}
+  m_LocalPosition: {x: 19.873928, y: 1, z: 37.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -148,7 +148,7 @@ MonoBehaviour:
   _botCollector: {fileID: 4059513196657245274}
   _collection: {fileID: 4059513196657245272}
   _buildNewWarehouse: {fileID: 6214892519049899905}
-  _speed: 12
+  _speed: 20
 --- !u!114 &4059513196657245272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,5 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae2bbc7838207c4d8cc12e37e52b23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stock: {fileID: 0}
   _botCollector: {fileID: 4059513196657245274}

@@ -14,7 +14,6 @@ public class BotCollector : MonoBehaviour
     public void Expect()
     {
         CarriesResource = false;
-        TargetResource = null;
     }
 
     public void RaiseResource()
@@ -32,7 +31,6 @@ public class BotCollector : MonoBehaviour
         Stock = stock;
         _botMovement.GetLink(Stock);
         _collection.GetLink(Stock);
-        _buildNewWarehouse.GetLink(Stock);
     }
 
     public void GoBuild(Vector3 constructionSite)

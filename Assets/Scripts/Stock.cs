@@ -13,6 +13,8 @@ public class Stock : MonoBehaviour
     private Queue<BotCollector> _freeBots = new Queue<BotCollector>();
     private Coroutine _findFreeBots;
     private Resource _resource;
+    private bool _startCoroutine = false;
+    private bool _isReserve = false;
     private int _resourceCount;
     private int _maxBotsCount = 5;
     private int _warehouseCost = 5;
@@ -22,16 +24,18 @@ public class Stock : MonoBehaviour
 
     private void Start()
     {
-        if (_initialBots.Length > 0)
+        _isReserve = false;
+
+        for (int i = 0; i < _initialBots.Length; i++)
         {
-            for (int i = 0; i < _initialBots.Length; i++)
-            {
-                _allBots.Add(_initialBots[i]);
-            }
+            _allBots.Add(_initialBots[i]);
         }
 
         _findFreeBots = StartCoroutine(FindFreeBots());
+        _startCoroutine = true;
+
         StartCoroutine(SendCollect());
+
     }
 
     private void Update()
@@ -59,12 +63,16 @@ public class Stock : MonoBehaviour
     {
         if (_player.CurrentFlag != null)
         {
-            var colonizeBot = _freeBots.Dequeue();
-            StopCoroutine(_findFreeBots);
-            _allBots.Remove(colonizeBot);
-            _findFreeBots = StartCoroutine(FindFreeBots());
+            if (_isReserve == false)
+            {
+                _isReserve = true;
+                _resourceCount -= _warehouseCost;
 
-            colonizeBot.GoBuild(_player.CurrentFlag.transform.position);
+                var colonizeBot = _freeBots.Dequeue();
+
+                colonizeBot.GoBuild(_player.CurrentFlag.transform.position);
+                _isReserve = false;
+            }
         }
     }
 
@@ -75,9 +83,17 @@ public class Stock : MonoBehaviour
             _resourceCount -= _unitCost;
             var bot = Instantiate(_botPrefab, transform.position, Quaternion.identity);
             bot.GetWarehouse(this);
-            StopCoroutine(_findFreeBots);
-            _allBots.Add(bot);
-            _findFreeBots = StartCoroutine(FindFreeBots());
+
+            if (_startCoroutine == true)
+            {
+                StopCoroutine(_findFreeBots);
+                _startCoroutine = false;
+
+                _allBots.Add(bot);
+
+                _findFreeBots = StartCoroutine(FindFreeBots());
+                _startCoroutine = true;
+            }
         }
     }
 
@@ -123,6 +139,11 @@ public class Stock : MonoBehaviour
         }
     }
 
+    public void RelocateCollector(BotCollector colonizeBot)
+    {
+        _allBots.Remove(colonizeBot);
+    }
+
     public void GetResource()
     {
         _resourceCount++;
@@ -133,13 +154,30 @@ public class Stock : MonoBehaviour
         _player = player;
     }
 
-    public void ResetAmountResources()
-    {
-        _resourceCount = 0;
-    }
-
     public void AddBotToList(BotCollector bot)
     {
+        if (_startCoroutine == true)
+        {
+            StopCoroutine(_findFreeBots);
+            _startCoroutine = false;
+        }
+
+        foreach (var botDel in _allBots)
+        {
+            _allBots.Remove(botDel);
+        }
+
+
+
         _allBots.Add(bot);
+
+        _findFreeBots = StartCoroutine(FindFreeBots());
+        _startCoroutine = true;
+    }
+
+    public void FirstStartCoroutine()
+    {
+        _findFreeBots = StartCoroutine(FindFreeBots());
+        StartCoroutine(SendCollect());
     }
 }

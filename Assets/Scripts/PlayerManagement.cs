@@ -5,7 +5,9 @@ public class PlayerManagement : MonoBehaviour
     [SerializeField] private GameObject _flagPrefab;
     [SerializeField] private Camera _camera;
 
-    public GameObject CurrentFlag { get; private set; } = null;
+    private GameObject _currentFlag;
+
+    public GameObject CurrentFlag => _currentFlag;
 
     private void Update()
     {
@@ -26,16 +28,16 @@ public class PlayerManagement : MonoBehaviour
 
     private void SetFlag(Vector3 placeForFlag)
     {
-        if (CurrentFlag != null)
+        if (_currentFlag != null)
         {
-            Destroy(CurrentFlag);
+            Destroy(_currentFlag);
         }
 
-        CurrentFlag = Instantiate(_flagPrefab, placeForFlag, Quaternion.identity);
+        _currentFlag = Instantiate(_flagPrefab, placeForFlag, Quaternion.identity);
     }
 
     public void DestroyFlag()
     {
-        Destroy(CurrentFlag);
+        Destroy(_currentFlag);
     }
 }

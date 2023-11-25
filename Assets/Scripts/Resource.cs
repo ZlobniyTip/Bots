@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Resource : MonoBehaviour
@@ -15,5 +13,10 @@ public class Resource : MonoBehaviour
     public void Reserve()
     {
         IsBooked = true;
+    }
+
+    public void DestroyResource()
+    {
+        Destroy(gameObject);
     }
 }

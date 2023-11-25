@@ -16,7 +16,7 @@ public class Collection : MonoBehaviour
 
     public void Drop()
     {
-        _botCollector.TargetResource.transform.parent = null;
+        _botCollector.TargetResource.DestroyResource();
         _botCollector.Expect();
         _stock.GetResource();
     }
