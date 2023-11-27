@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &71875715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8840297291682287172, guid: 6985d765c0948be4a9159521b7c085e7, type: 3}
+  m_PrefabInstance: {fileID: 2686681980158658886}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3b2d862bcbc1a4c833a3571d19c5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +322,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &887635328
 MonoBehaviour:
@@ -838,13 +849,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3583155450234786536, guid: 6985d765c0948be4a9159521b7c085e7, type: 3}
+      propertyPath: _resource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -3583155450234786536, guid: 6985d765c0948be4a9159521b7c085e7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2686681980278806744, guid: 6985d765c0948be4a9159521b7c085e7, type: 3}
       propertyPath: m_Name
       value: Stock
       objectReference: {fileID: 0}
     - target: {fileID: 2686681980278806756, guid: 6985d765c0948be4a9159521b7c085e7, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2686681980278806756, guid: 6985d765c0948be4a9159521b7c085e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -890,6 +909,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1292786521}
+    - target: {fileID: 2686681980278806757, guid: 6985d765c0948be4a9159521b7c085e7, type: 3}
+      propertyPath: _botSpawner
+      value: 
+      objectReference: {fileID: 71875715}
     - target: {fileID: 2686681980278806757, guid: 6985d765c0948be4a9159521b7c085e7, type: 3}
       propertyPath: _initialBots.Array.data[0]
       value: 

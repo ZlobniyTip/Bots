@@ -10,11 +10,6 @@ public class Resource : MonoBehaviour
         IsAdded = true;
     }
 
-    public void Reserve()
-    {
-        IsBooked = true;
-    }
-
     public void DestroyResource()
     {
         Destroy(gameObject);
