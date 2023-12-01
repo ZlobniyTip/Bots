@@ -11,7 +11,6 @@ public class Stock : MonoBehaviour
     [SerializeField] private float _delayBetweenAttempts;
 
     private List<BotCollector> _allBots = new List<BotCollector>();
-    private Queue<Resource> _resources = new Queue<Resource>();
     private Queue<BotCollector> _freeBots = new Queue<BotCollector>();
     private Coroutine _findFreeBots;
     private Resource _resource;
@@ -37,7 +36,6 @@ public class Stock : MonoBehaviour
         _isStartCoroutine = true;
 
         StartCoroutine(SendCollect());
-        StartCoroutine(GetScannerData());
         StartCoroutine(TryCreateNewWarehouse());
         StartCoroutine(BuyUnit());
     }
@@ -154,24 +152,11 @@ public class Stock : MonoBehaviour
         }
     }
 
-    private IEnumerator GetScannerData()
-    {
-        while (true)
-        {
-            if (_scanner.FoundResourceCount > 0)
-            {
-                _resources.Enqueue(_scanner.ShowResourceCoordinates());
-            }
-
-            yield return null;
-        }
-    }
-
     private IEnumerator SendCollect()
     {
         while (true)
         {
-            if (_resources.Count > 0)
+            if (_scanner.FoundResourceCount > 0)
             {
                 if (_freeBots.Count > 0)
                 {
@@ -179,7 +164,7 @@ public class Stock : MonoBehaviour
 
                     if (currentBot.TargetResource == null)
                     {
-                        _resource = _resources.Dequeue();
+                        _resource = _scanner.ShowResourceCoordinates();
                         currentBot.GetInstructions(_resource);
                     }
                 }

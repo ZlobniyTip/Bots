@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e1113709405a646b83f79e4951351b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resource: {fileID: 7559201518596824096, guid: 34e70e24b8f33c147857621362355694, type: 3}
+  _resource: {fileID: 7016140438602054252, guid: 34e70e24b8f33c147857621362355694, type: 3}
   _delayBetweenSpawns: 0.3
   _maxDistanceX: 35
   _maxDistanceZ: 35
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354f30d4369e4f5498ec15bb92a602da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _flagPrefab: {fileID: 7878619484126870391, guid: 17e3320029a597449814d322d8cc26d2, type: 3}
+  _flagPrefab: {fileID: 3444895129598036813, guid: 17e3320029a597449814d322d8cc26d2, type: 3}
   _camera: {fileID: 963194227}
 --- !u!4 &1292786522
 Transform:

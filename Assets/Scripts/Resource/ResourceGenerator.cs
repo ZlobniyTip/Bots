@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class ResourceGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject _resource;
+    [SerializeField] private Resource _resource;
     [SerializeField] private float _delayBetweenSpawns;
     [SerializeField] private float _maxDistanceX;
     [SerializeField] private float _maxDistanceZ;
 
     private Vector3 _spawnPosition;
+    private float _positionY = -0.45f;
 
     private void Start()
     {
@@ -21,7 +22,8 @@ public class ResourceGenerator : MonoBehaviour
 
         while (true)
         {
-            _spawnPosition = new Vector3(Random.Range(0, _maxDistanceX), -0.45f, Random.Range(0, _maxDistanceZ));
+            _spawnPosition = new Vector3(Random.Range(0, _maxDistanceX),
+                _positionY, Random.Range(0, _maxDistanceZ));
             Instantiate(_resource, _spawnPosition, Quaternion.identity);
 
             yield return delayBeetweenSpawns;

@@ -12,7 +12,8 @@ public class BotMovement : MonoBehaviour
     {
         if (_botCollector.IsBuilder == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _buildNewWarehouse.ConstructionSite, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, 
+                _buildNewWarehouse.ConstructionSite, _speed * Time.deltaTime);
 
             if (transform.position == _buildNewWarehouse.ConstructionSite)
             {
@@ -25,7 +26,8 @@ public class BotMovement : MonoBehaviour
         {
             if (_botCollector.TargetResource != null)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _botCollector.TargetResource.transform.position, _speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, 
+                    _botCollector.TargetResource.transform.position, _speed * Time.deltaTime);
 
                 if (transform.position == _botCollector.TargetResource.transform.position)
                 {
@@ -35,7 +37,8 @@ public class BotMovement : MonoBehaviour
         }
         else if (_botCollector.CarriesResource == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _stock.transform.position, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, 
+                _stock.transform.position, _speed * Time.deltaTime);
 
             if (transform.position == _stock.transform.position)
             {

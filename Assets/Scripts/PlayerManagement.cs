@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerManagement : MonoBehaviour
 {
-    [SerializeField] private GameObject _flagPrefab;
+    [SerializeField] private Flag _flagPrefab;
     [SerializeField] private Camera _camera;
 
-    private GameObject _currentFlag;
+    private Flag _currentFlag;
 
-    public GameObject CurrentFlag => _currentFlag;
+    public Flag CurrentFlag => _currentFlag;
 
     private void Update()
     {
@@ -18,7 +18,7 @@ public class PlayerManagement : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.name == "Ground")
+                if (hit.collider.TryGetComponent<ResourceGenerator>(out ResourceGenerator ground))
                 {
                     SetFlag(hit.point);
                 }
@@ -30,7 +30,7 @@ public class PlayerManagement : MonoBehaviour
     {
         if (_currentFlag != null)
         {
-            Destroy(_currentFlag);
+            Destroy(_currentFlag.gameObject);
         }
 
         _currentFlag = Instantiate(_flagPrefab, placeForFlag, Quaternion.identity);
@@ -38,6 +38,6 @@ public class PlayerManagement : MonoBehaviour
 
     public void DestroyFlag()
     {
-        Destroy(_currentFlag);
+        Destroy(_currentFlag.gameObject);
     }
 }
